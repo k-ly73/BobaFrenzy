@@ -13,7 +13,12 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text("Word Generator"),
         
 
-        )
+        ),
+        body: Column(
+          children: [
+            BackgroundImage("assets/images/milk-tea.jpg"),
+          ],
+        ),
       )
     );
   }
