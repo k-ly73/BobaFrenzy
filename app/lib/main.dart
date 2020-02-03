@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 class BackgroundImage extends StatelessWidget {
   final String _assetPath;
   
-  BackgroundImage(this._assetPath)
+  BackgroundImage(this._assetPath);
   @override 
   Widget build(BuildContext context) {
     return Container(
