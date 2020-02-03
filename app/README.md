@@ -1,6 +1,6 @@
-# app
+# BobaFrenzy
 
-A new Flutter project.
+An application that allows users to customize favorite tea drinks
 
 ## Getting Started
 
