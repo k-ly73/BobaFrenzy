@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
-    final wordPair = WordPair.random();
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
       home: Scaffold(
-        appBar: AppBar(title: Text("Word Generator"),
-        
-
+        appBar: AppBar(title: Text("Boba Frenzy"),
         ),
         body: Column(
           children: [
-            BackgroundImage("assets/images/milk-tea.jpg"),
+            BackgroundImage("lib/assets/images/milk_tea.jpg"),
           ],
         ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[],),
+          ),
       )
     );
   }
@@ -32,13 +33,14 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(
-        height: 200.0,
+        height: 603,
       ),
-      decoration: BoxDecoration(color: Colors.grey),
-      child: Image.asset(
-        _assetPath,
-        fit: BoxFit.cover,
-      )
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("lib/assets/images/milk_tea.jpg"),
+          fit: BoxFit.cover,
+        )
+      ),
     );
   }
 
