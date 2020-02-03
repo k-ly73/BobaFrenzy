@@ -11,12 +11,33 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: Colors.green[900]),
       home: Scaffold(
         appBar: AppBar(title: Text("Word Generator"),
-       
-
         
-      ))
+
+        )
+      )
     );
   }
+}
+
+class BackgroundImage extends StatelessWidget {
+  final String _assetPath;
+  
+  BackgroundImage(this._assetPath)
+  @override 
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints.expand(
+        height: 200.0,
+      ),
+      decoration: BoxDecoration(color: Colors.grey),
+      child: Image.asset(
+        _assetPath,
+        fit: BoxFit.cover,
+      )
+    );
+  }
+
+
 }
 
 // class RandomSelection extends StatefulWidget {
