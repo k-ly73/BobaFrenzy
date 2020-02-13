@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './screens/home_page.dart';
+import './widgets/drawer.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -6,27 +8,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
-      home: HomePage()
+    
+      home: HomeScreen()
+      
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override 
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Boba Frenzy"),
-        
-      ),
-      body: Column(
-        children: [
-          BackgroundImage("lib/assets/images/milk_tea.jpg"),
-        ],
-      ),
-    );
-  }
-}
+
 
 class DrawerMenu extends StatelessWidget {
   @override 
@@ -35,11 +24,14 @@ class DrawerMenu extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           createHeader(),
-          createDrawerItem()
+          createDrawerItem(
+      
+          ),
         ]
       )
     );
-  }
+}
+
   Widget createHeader() {
     return DrawerHeader(
       margin: EdgeInsets.zero,
@@ -98,6 +90,26 @@ class BackgroundImage extends StatelessWidget {
       ),
     );
   }
-
 }
 
+class ProfilePage extends StatelessWidget {
+  static const String routeName = '/profile';
+
+  @override 
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Profile'),
+        ),
+        drawer: DrawerMenu(),
+    );
+  }
+}
+
+class CollectionsPage extends StatelessWidget {
+  static const String routeName = "/collections";
+  @override 
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
