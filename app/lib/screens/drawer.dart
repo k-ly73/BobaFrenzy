@@ -25,13 +25,23 @@ class MenuDrawer extends StatelessWidget {
                       ) 
                     )
                   ),
-                  Text("Menu")
+                  Text(
+                    "Kevin Ly",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    )
+                    
+              
+                  ),
+                  Text(
+                    "Yes",
+                  )
                 ],
               )
             ),
           ),
           ListTile(
-            leading: Icon(Icons.arrow_upward),
             title: Text(
               'Profile',
               style: TextStyle(
@@ -46,6 +56,7 @@ class MenuDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
+            onTap: () {}
           ),
           ListTile(
             title: Text(

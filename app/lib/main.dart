@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import './screens/home_page.dart';
-import './widgets/drawer.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -92,24 +93,3 @@ class BackgroundImage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  static const String routeName = '/profile';
-
-  @override 
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Profile'),
-        ),
-        drawer: DrawerMenu(),
-    );
-  }
-}
-
-class CollectionsPage extends StatelessWidget {
-  static const String routeName = "/collections";
-  @override 
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
