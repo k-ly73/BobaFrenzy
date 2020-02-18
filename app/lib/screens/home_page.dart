@@ -13,9 +13,28 @@ class HomeScreen extends StatelessWidget {
       drawer: MenuDrawer(
         
       ),
-      body: Column(
-        children: [
-          
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            
+          ),
+          Container(
+            constraints: 
+              BoxConstraints.expand(
+                height: 603,
+              ),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomLeft,
+                colors: [Colors.orange[50], Colors.orange[100]],
+                tileMode: TileMode.repeated,
+              )
+            ),
+          ),
+
         ],
         
       ),
