@@ -11,15 +11,10 @@ class HomeScreen extends StatelessWidget {
       ),
 
       drawer: MenuDrawer(
-        
       ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            
-          ),
           Container(
             constraints: 
               BoxConstraints.expand(
@@ -33,6 +28,19 @@ class HomeScreen extends StatelessWidget {
                 tileMode: TileMode.repeated,
               )
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Hello",
+                style: TextStyle(
+                  fontSize: 40.0,
+                  color: Colors.black,
+                  
+                )
+              )
+            ],
           ),
 
         ],
