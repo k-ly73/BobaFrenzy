@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import './screens/home_page.dart';
+import './screens/profile.dart';
+import './screens/collections.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,8 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
     
-      home: HomeScreen()
-      
+      home: HomeScreen(),
+      routes: <String, WidgetBuilder> {
+        "/profile": (BuildContext context) => new ProfilePage(),
+        "/collections": (BuildContext context) => new CollectionsPage(),
+      }
     );
   }
 }

@@ -47,7 +47,9 @@ class MenuDrawer extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
               ),
+              
             ),
+            onTap: () => Navigator.of(context).pushNamed("/profile"),
           ),
           ListTile(
             title: Text(
@@ -56,7 +58,7 @@ class MenuDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            onTap: () {}
+            onTap: () => Navigator.of(context).pushNamed("/collections"),
           ),
           ListTile(
             title: Text(

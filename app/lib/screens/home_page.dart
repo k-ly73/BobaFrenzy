@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
+import 'profile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override 
@@ -29,17 +30,18 @@ class HomeScreen extends StatelessWidget {
               )
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 "Hello",
                 style: TextStyle(
                   fontSize: 40.0,
                   color: Colors.black,
-                  
+                  fontFamily: "Cursive",
                 )
-              )
+              ),
+             
             ],
           ),
 
