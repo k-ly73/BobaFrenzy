@@ -34,13 +34,19 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                "Hello",
+                "Welcome",
                 style: TextStyle(
                   fontSize: 40.0,
                   color: Colors.black,
                   fontFamily: "Cursive",
                 )
               ),
+              RaisedButton(
+                onPressed: () {
+                  
+                }
+
+              )
              
             ],
           ),

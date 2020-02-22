@@ -34,9 +34,7 @@ class MenuDrawer extends StatelessWidget {
                     
               
                   ),
-                  Text(
-                    "Yes",
-                  )
+                  
                 ],
               )
             ),
@@ -49,7 +47,11 @@ class MenuDrawer extends StatelessWidget {
               ),
               
             ),
-            onTap: () => Navigator.of(context).pushNamed("/profile"),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/profile");
+              
+            } 
           ),
           ListTile(
             title: Text(
@@ -58,7 +60,10 @@ class MenuDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            onTap: () => Navigator.of(context).pushNamed("/collections"),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/collections");
+            }
           ),
           ListTile(
             title: Text(
@@ -67,6 +72,13 @@ class MenuDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
+            onTap: () 
+            {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/create_drink");
+      
+            } 
+            
           ),
         ]
       )
