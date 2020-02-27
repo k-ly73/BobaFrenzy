@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-import 'profile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override 
@@ -11,51 +10,33 @@ class HomeScreen extends StatelessWidget {
         
       ),
 
-      drawer: MenuDrawer(
-      ),
+      drawer: MenuDrawer(),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Container(
-            constraints: 
-              BoxConstraints.expand(
-                height: 603,
-              ),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomLeft,
-                colors: [Colors.orange[50], Colors.orange[100]],
-                tileMode: TileMode.repeated,
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.orange[50], Colors.orange[100]]
+                ),
               )
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            
+            Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Welcome",
-                style: TextStyle(
-                  fontSize: 40.0,
-                  color: Colors.black,
-                  fontFamily: "Cursive",
-                )
-              ),
-              RaisedButton(
-                onPressed: () {
-                  
-                }
-
+              Text("Welcome to Boba Frenzy you basic bitch"),
+              CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Colors.black,
+                
               )
-             
             ],
-          ),
-
+          )
         ],
-        
-      ),
-      
-      
+      )
     );
   }
 }
