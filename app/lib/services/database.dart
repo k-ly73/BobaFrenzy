@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DatabaseService {
-  final CollectionReference drinkCollection = Firestore.instance.collection('drinks');
-}
+// class DatabaseService {
+//   final CollectionReference drinkCollection = Firestore.instance.collection('drinks');
+// }

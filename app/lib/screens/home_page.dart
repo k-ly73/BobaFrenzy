@@ -5,9 +5,7 @@ class HomeScreen extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Boba Frenzy"),
-        
+      appBar: AppBar(     
       ),
 
       drawer: MenuDrawer(),
@@ -25,13 +23,18 @@ class HomeScreen extends StatelessWidget {
             ),
             
             Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text("Welcome to Boba Frenzy you basic bitch"),
+              Text(
+                "Welcome to Boba Frenzy you basic bitch",
+                style: TextStyle(
+                  fontFamily: "Cursive",
+                  fontSize: 30,
+                )
+              ),
               CircleAvatar(
                 radius: 50.0,
                 backgroundColor: Colors.black,
-                
               )
             ],
           )
