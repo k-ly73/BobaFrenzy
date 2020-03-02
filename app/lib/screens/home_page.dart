@@ -25,6 +25,13 @@ class HomeScreen extends StatelessWidget {
             Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Colors.green,
+                child: Icon(
+                  Icons.local_drink,
+                )    , 
+              ),
               Text(
                 "Welcome to Boba Frenzy you basic bitch",
                 style: TextStyle(
@@ -32,10 +39,6 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 30,
                 )
               ),
-              CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Colors.black,
-              )
             ],
           )
         ],
