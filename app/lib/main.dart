@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/'
+// import 'package:google_sign_in/';
 import './screens/home_page.dart';
 import './screens/profile.dart';
 import './screens/collections.dart';
-
+import './screens/create_drink.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfilePage(),
         "/collections": (BuildContext context) => new CollectionsPage(),
+        "/create_drink": (BuildContext context) => new CreateDrink(),
       }
     );
   }
