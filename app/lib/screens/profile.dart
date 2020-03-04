@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ProfilePage extends StatefulWidget {
   @override 
   _ProfilePageState createState() => new _ProfilePageState();
 }
 
+
 class _ProfilePageState extends State<ProfilePage> {
   static const String routeName = '/profile';
 
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
+  }
   @override 
   Size get preferredSize => Size(double.infinity, 250);
   @override 
@@ -22,16 +29,38 @@ class _ProfilePageState extends State<ProfilePage> {
               clipper: getClipper(),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.orange[50], 
+                  color: Colors.orange[100], 
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.orange[50],
+                      blurRadius: 20, 
+                      offset: Offset(0, 100)
+                    )
+                  ] 
                 ),
                 child: Column(
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        IconButton()
-                      ]
-                    )
+                        
+                      ],
+                    ),
+                    Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: 
+                           
+                        )
+                      )
+                    ),
+
+                    
+
                   ],
                 )
               )
