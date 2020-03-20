@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import './screens/login.dart';
 // import 'package:google_sign_in/';
 import './screens/home_page.dart';
 import './screens/profile.dart';
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         "/profile": (BuildContext context) => new ProfilePage(),
         "/collections": (BuildContext context) => new CollectionsPage(),
         "/create_drink": (BuildContext context) => new CreateDrink(),
+        "/login": (BuildContext context) => new LoginPage(),
       }
     );
   }

@@ -80,6 +80,21 @@ class MenuDrawer extends StatelessWidget {
             } 
             
           ),
+          ListTile(
+             title: Text(
+              'Log into your Account',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () 
+            {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/login");
+      
+            } 
+            
+          )
         ]
       )
     );

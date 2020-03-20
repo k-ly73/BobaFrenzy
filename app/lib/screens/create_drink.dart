@@ -7,15 +7,11 @@ class CreateDrink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Drinks"),
+        title: Text("Create a Drink")
       ),
-      body: new Stack(
-        children: <Widget>[
-          new Column(
-            
-          )
-        ],
-      ),
+      body: ListView.builder(
+      
+      )
     );
   }
 }

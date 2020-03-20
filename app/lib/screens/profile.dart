@@ -11,18 +11,22 @@ class _ProfilePageState extends State<ProfilePage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange[100],
+      
       appBar: AppBar(
         title: Text('Profile'),
       ),
       body: SafeArea(
+        
         child: Column(
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(
-                "lib/assets/images/milk_tea_pearl.jpg",
-                  
+                "lib/assets/images/test_profile2.png",
               ),
                 
             ),
@@ -42,6 +46,11 @@ class _ProfilePageState extends State<ProfilePage> {
               "Something",
               style: TextStyle(
                 fontSize: 40,
+              )
+            ),
+            SizedBox(
+              child: Divider(
+                color: Colors.orange[100],
               )
             )
           ]

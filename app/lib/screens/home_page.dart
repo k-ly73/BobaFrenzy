@@ -5,7 +5,8 @@ class HomeScreen extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(     
+      appBar: AppBar(  
+        title: Text("Home")
       ),
 
       drawer: MenuDrawer(),
@@ -31,13 +32,6 @@ class HomeScreen extends StatelessWidget {
                 child: Icon(
                   Icons.local_drink,
                 )    , 
-              ),
-              Text(
-                "Welcome to Boba Frenzy you basic bitch",
-                style: TextStyle(
-                  fontFamily: "Cursive",
-                  fontSize: 30,
-                )
               ),
             ],
           )

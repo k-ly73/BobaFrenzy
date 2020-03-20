@@ -9,6 +9,15 @@ class CollectionsPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Collections'),
         ),
+        body: Stack(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+
+              ],
+            )
+          ],
+        )
         
     );
   }
