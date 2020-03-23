@@ -5,7 +5,7 @@ import './screens/home_page.dart';
 import './screens/profile.dart';
 import './screens/collections.dart';
 import './screens/create_drink.dart';
-
+import './screens/intro.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
-    
-      home: HomeScreen(),
+      
+      home: IntroScreen(),
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfilePage(),
         "/collections": (BuildContext context) => new CollectionsPage(),

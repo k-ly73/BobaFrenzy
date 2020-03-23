@@ -8,7 +8,6 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(  
         title: Text("Home")
       ),
-
       drawer: MenuDrawer(),
       body: Stack(
         fit: StackFit.expand,
@@ -26,6 +25,12 @@ class HomeScreen extends StatelessWidget {
             Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Text(
+                'Welcome to Boba Frenzy!',
+                style: TextStyle(
+                  fontSize: 30, 
+                ),
+              ),
               CircleAvatar(
                 radius: 50.0,
                 backgroundColor: Colors.green,

@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
             ),
             FlatButton(
               child: Text("Sign Up"),
-              onPressed: (){
+                onPressed: (){
                 print("clicked");
                 print(emailEditingController.text.toString());
                 print(passwordEditingController.text.toString());
@@ -59,9 +59,23 @@ class LoginPage extends StatelessWidget {
             ),
             FlatButton(
               child: Text("Login"),
-              onPressed: () {
+          
+              onPressed: (){
+                print("clicked");
+                print(emailEditingController.text.toString());
+                print(passwordEditingController.text.toString());
 
-              }
+                _auth.createUserWithEmailAndPassword(
+                  email: emailEditingController.text.toString(), 
+                  password: passwordEditingController.text.toString())
+                  .then((value) {
+                    print("Successfully logged in! " + value.user.uid);
+                    MaterialPageRoute(builder: (context) => HomeScreen());
+                  }).catchError((e){
+                    print("Unable to login " + e.toString());
+                  });
+              },
+          
             )
           ],
         )
