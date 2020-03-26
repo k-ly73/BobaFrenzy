@@ -21,59 +21,92 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: emailEditingController,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Email',
-              ),
+            Container(
+              padding: EdgeInsets.fromLTRB(35, 20, 20, 0),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: passwordEditingController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                        labelStyle: TextStyle(
+                        fontFamily: 'Montserra',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      )
+                    ),
+                  ),
+                ],
+              )
             ),
-
-            TextField(
-              controller: passwordEditingController,
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Password',
-              ),
+            Container(
+              padding: EdgeInsets.fromLTRB(35, 20, 20, 50),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    controller: passwordEditingController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                        labelStyle: TextStyle(
+                        fontFamily: 'Montserra',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      )
+                    ),
+                  ),
+                ],
+              )
             ),
-            FlatButton(
-              child: Text("Sign Up"),
-                onPressed: (){
-                print("clicked");
-                print(emailEditingController.text.toString());
-                print(passwordEditingController.text.toString());
-
-                _auth.createUserWithEmailAndPassword(
-                  email: emailEditingController.text.toString(), 
-                  password: passwordEditingController.text.toString())
-                  .then((value) {
-                    print("Successfully signed up! " + value.user.uid);
-                    MaterialPageRoute(builder: (context) => HomeScreen());
-                  }).catchError((e){
-                    print("Unable to sign up " + e.toString());
-                  });
-              },
-              
-            ),
-            FlatButton(
-              child: Text("Login"),
           
+            RaisedButton(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Login"),
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(18.0),
+              ),
               onPressed: (){
-                print("clicked");
-                print(emailEditingController.text.toString());
-                print(passwordEditingController.text.toString());
+              print("clicked");
+              print(emailEditingController.text.toString());
+              print(passwordEditingController.text.toString());
 
-                _auth.createUserWithEmailAndPassword(
-                  email: emailEditingController.text.toString(), 
-                  password: passwordEditingController.text.toString())
-                  .then((value) {
-                    print("Successfully logged in! " + value.user.uid);
-                    MaterialPageRoute(builder: (context) => HomeScreen());
-                  }).catchError((e){
-                    print("Unable to login " + e.toString());
-                  });
+              _auth.createUserWithEmailAndPassword(
+                email: emailEditingController.text.toString(), 
+                password: passwordEditingController.text.toString())
+                .then((value) {
+                  print("Successfully signed up! " + value.user.uid);
+                  MaterialPageRoute(builder: (context) => HomeScreen());
+                }).catchError((e){
+                  print("Unable to sign up " + e.toString());
+                });
+            },
+            
+          ),
+          RaisedButton(
+            padding: EdgeInsets.all(8.0),
+            textColor: Colors.white,
+            color: Colors.blueAccent,
+            splashColor: Colors.blueAccent,
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18.0),
+            ),
+            child: Text("Sign Up"),
+        
+            onPressed: (){
+              print("clicked");
+              print(emailEditingController.text.toString());
+              print(passwordEditingController.text.toString());
+
+              _auth.createUserWithEmailAndPassword(
+                email: emailEditingController.text.toString(), 
+                password: passwordEditingController.text.toString())
+                .then((value) {
+                  print("Successfully logged in! " + value.user.uid);
+                  MaterialPageRoute(builder: (context) => HomeScreen());
+                }).catchError((e){
+                  print("Unable to login " + e.toString());
+                });
               },
           
             )
