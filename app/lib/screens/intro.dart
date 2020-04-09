@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'login.dart';
+import 'home_page.dart';
 
 class IntroScreen extends StatelessWidget {
   @override 
@@ -92,7 +93,7 @@ class IntroScreen extends StatelessWidget {
                         onTap : () {
                           Navigator.push(
                             context, MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => HomeScreen(),
                             )
                           );
                         },

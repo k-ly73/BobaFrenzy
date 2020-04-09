@@ -4,9 +4,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'home_page.dart';
 class LoginPage extends StatelessWidget {
-
+  
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  // var currentUser = widget.user.displayName;
 
   var emailEditingController = TextEditingController();
   var passwordEditingController = TextEditingController();
@@ -22,11 +22,20 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "Welcome",
+                  ),
+                ],
+              )
+            ),
+            Container(
               padding: EdgeInsets.fromLTRB(35, 20, 20, 0),
               child: Column(
                 children: <Widget>[
                   TextField(
-                    controller: passwordEditingController,
+                    controller: emailEditingController,
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -75,10 +84,10 @@ class LoginPage extends StatelessWidget {
                 email: emailEditingController.text.toString(), 
                 password: passwordEditingController.text.toString())
                 .then((value) {
-                  print("Successfully signed up! " + value.user.uid);
+                  print("Successfully signed in! " + value.user.uid);
                   MaterialPageRoute(builder: (context) => HomeScreen());
                 }).catchError((e){
-                  print("Unable to sign up " + e.toString());
+                  print("Unable to sign in " + e.toString());
                 });
             },
             
@@ -98,14 +107,17 @@ class LoginPage extends StatelessWidget {
               print(emailEditingController.text.toString());
               print(passwordEditingController.text.toString());
 
+              _auth.createUserWithEmailAndPassword(email: null, password: null);
               _auth.createUserWithEmailAndPassword(
                 email: emailEditingController.text.toString(), 
                 password: passwordEditingController.text.toString())
                 .then((value) {
-                  print("Successfully logged in! " + value.user.uid);
-                  MaterialPageRoute(builder: (context) => HomeScreen());
+                  print("Successfully signed up" + value.user.uid);
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen())
+                  );
                 }).catchError((e){
-                  print("Unable to login " + e.toString());
+                  print("Unable to signed up" + e.toString());
                 });
               },
           
