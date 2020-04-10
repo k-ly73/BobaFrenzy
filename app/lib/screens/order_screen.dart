@@ -2,23 +2,32 @@ import "package:flutter/material.dart";
 import "order_model.dart";
 
 
-class CreateDrink extends StatelessWidget {
+class CreateDrink extends StatefulWidget {
+  @override
+  _OrderState createState() => new _OrderState();
 
-  List<DrinkModel> drinks = [
-    DrinkModel("Black Milk Tea"),
-
-  ];
-  List<DrinkModel> toppings = [
-
-  ];
   static const String routeName = "/create_drink";
+}
+class _OrderState extends State<CreateDrink> {
 
   @override 
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (context, index){
-        title: Text(),
-      }, 
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Create Your Drink"),
+      ),
+      body: new Center(
+        child: new Container(
+          padding: new EdgeInsets.all(32.0),
+          child: new Column(
+            children: <Widget>[
+              new DropdownButton(
+                value: _
+              )
+            ],
+          )
+        )
+      )
     );
   }
 }
