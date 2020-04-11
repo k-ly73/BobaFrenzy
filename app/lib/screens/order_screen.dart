@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import "order_model.dart";
+import "drink_model.dart";
+import "review_order.dart";
 
 
 class CreateDrink extends StatefulWidget {
@@ -9,6 +10,9 @@ class CreateDrink extends StatefulWidget {
   static const String routeName = "/create_drink";
 }
 class _OrderState extends State<CreateDrink> {
+
+  DrinkOrder _drinkOrder = new DrinkOrder();
+
 
   @override 
   Widget build(BuildContext context) {
@@ -21,8 +25,20 @@ class _OrderState extends State<CreateDrink> {
           padding: new EdgeInsets.all(32.0),
           child: new Column(
             children: <Widget>[
-              new DropdownButton(
-                value: _
+              new Expanded(
+                child: new ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _drinkOrder.drinks.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return new CheckboxListTile(
+                      controlAffinity: ListTileControlAffinity.leading,
+
+                      title: new Text(_drinkOrder.drinks.keys.elementAt(index)),
+                      value: _drinkOrder.toppings.values.elementAt(index),
+                      onChanged: null,
+                    );
+                  }
+                )
               )
             ],
           )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'order_model.dart';
+import 'drink_model.dart';
 
 class ReviewOrder extends StatelessWidget{  
   DrinkOrder _drinkOrder;
@@ -12,7 +12,7 @@ class ReviewOrder extends StatelessWidget{
     _list.add("Toppings: ");
 
     _drinkOrder.drinks.forEach((String name, bool value){
-      
+      if(value) _list.add(name);
     });
 
     _drinkOrder.toppings.forEach((String name, bool value){
