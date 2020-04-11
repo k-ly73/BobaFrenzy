@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'drink_model.dart';
 
-class ReviewOrder extends StatelessWidget{  
+class ReviewCreation extends StatelessWidget{  
+  static const String routeName = '/review';
+
   DrinkOrder _drinkOrder;
   List<String> _list = new List<String>(); 
 
   Review({order: null}){
     _drinkOrder = order;
-    _list.add("Drink: ");
+
+    _list.add("Drink:  ${_drinkOrder.drink}");
     _list.add(" ");
     _list.add("Toppings: ");
-
-    _drinkOrder.drinks.forEach((String name, bool value){
-      if(value) _list.add(name);
-    });
 
     _drinkOrder.toppings.forEach((String name, bool value){
       if(value) _list.add(name);
     });
+
   }
   @override 
   Widget build(BuildContext context){

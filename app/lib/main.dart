@@ -4,8 +4,9 @@ import './screens/login.dart';
 import './screens/home_page.dart';
 import './screens/profile.dart';
 import './screens/collections.dart';
-import './screens/add_tea.dart';
+import './screens/order_screen.dart';
 import './screens/intro.dart';
+import './screens/review_order.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         "/collections": (BuildContext context) => new CollectionsPage(),
         "/create_drink": (BuildContext context) => new CreateDrink(),
         "/login": (BuildContext context) => new LoginPage(),
+        "/review": (BuildContext context) => new ReviewCreation()
       }
     );
   }
