@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class CollectionsPage extends StatelessWidget {
   static const String routeName = "/collections";
 

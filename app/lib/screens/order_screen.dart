@@ -82,9 +82,8 @@ class _OrderState extends State<CreateDrink> {
                 ),
                 onPressed: (){
                   Navigator.push(context, new MaterialPageRoute(
-                    builder: (BuildContext context) => new ReviewCreation())
+                    builder: (BuildContext context) => new ReviewCreation(order: _drinkOrder))
                   );
-
                 }
 
 

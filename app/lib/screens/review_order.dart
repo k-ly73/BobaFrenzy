@@ -7,7 +7,7 @@ class ReviewCreation extends StatelessWidget{
   DrinkOrder _drinkOrder;
   List<String> _list = new List<String>(); 
 
-  Review({order: null}){
+  ReviewCreation({order: null}){
     _drinkOrder = order;
 
     _list.add("Drink:  ${_drinkOrder.drink}");
@@ -29,14 +29,23 @@ class ReviewCreation extends StatelessWidget{
         padding: new EdgeInsets.all(32.0),
         child: new Column(
           children: <Widget>[
-            new Text("Review your creation"),
+            new Text(
+              "Review your creation",
+              style: new TextStyle(
+                fontSize: 30
+              )
+            ),
             new Expanded(
               child: new ListView.builder(
+                shrinkWrap: true,
                 itemCount: _list.length,
                 itemBuilder: (BuildContext context, int index){
                   return new Text(_list.elementAt(index));
                 }
               )
+            ),
+            new Expanded(
+              child: new Text('Generate'),
             )
           ],
         )

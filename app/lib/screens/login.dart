@@ -1,13 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
 import 'home_page.dart';
-class LoginPage extends StatelessWidget {
+
+class LoginPage extends StatefulWidget{
+  @override 
+  State<StatefulWidget> createState() => new _LoginPage();
+}
+
+enum FormType {
+  login,
+  register
+}
+
+class _LoginPage extends State<LoginPage> {
+  
+  String email;
+  String password;
+  FormType _formType;
   
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // var currentUser = widget.user.displayName;
+  final formKey = new GlobalKey<FormState>();
 
+  bool validateAndSave() {
+    final form = formKey.currentState;
+    if (form.validate()){
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  void validateAndSubmit() async {
+    if(validateAndSave()){
+      try {
+        if(_formType == FormType.login) {
+          FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
+          print("Signed in: ${user.uid}");
+        }
+        FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
+        print("Registered user: ${user.uid}");
+      }
+      catch(e) {
+        print('Error: $e');
+      }
+ 
+    }
+  }
+
+
+  void registerAccount(){
+    formKey.currentState.reset();
+    setState((){
+      _formType = FormType.register;
+    });
+  }
+
+  void loginAccount() {
+    formKey.currentState.reset();
+    setState((){
+      _formType = FormType.login;
+    });
+  }
   var emailEditingController = TextEditingController();
   var passwordEditingController = TextEditingController();
 
@@ -15,116 +68,92 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: new Text("Login/Register")
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Welcome",
-                  ),
-                ],
-              )
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 20, 0),
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    controller: emailEditingController,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                        labelStyle: TextStyle(
-                        fontFamily: 'Montserra',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )
-                    ),
-                  ),
-                ],
-              )
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 20, 50),
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    controller: passwordEditingController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                        labelStyle: TextStyle(
-                        fontFamily: 'Montserra',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )
-                    ),
-                  ),
-                ],
-              )
-            ),
-          
-            RaisedButton(
-              padding: EdgeInsets.all(8.0),
-              child: Text("Login"),
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(18.0),
-              ),
-              onPressed: (){
-              print("clicked");
-              print(emailEditingController.text.toString());
-              print(passwordEditingController.text.toString());
-
-              _auth.createUserWithEmailAndPassword(
-                email: emailEditingController.text.toString(), 
-                password: passwordEditingController.text.toString())
-                .then((value) {
-                  print("Successfully signed in! " + value.user.uid);
-                  MaterialPageRoute(builder: (context) => HomeScreen());
-                }).catchError((e){
-                  print("Unable to sign in " + e.toString());
-                });
-            },
-            
+      body: new Container(
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: buildInputs() + buildSubmitButtons()
           ),
-          RaisedButton(
-            padding: EdgeInsets.all(8.0),
-            textColor: Colors.white,
-            color: Colors.blueAccent,
-            splashColor: Colors.blueAccent,
-            shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18.0),
-            ),
-            child: Text("Sign Up"),
-        
-            onPressed: (){
-              print("clicked");
-              print(emailEditingController.text.toString());
-              print(passwordEditingController.text.toString());
-
-              _auth.createUserWithEmailAndPassword(email: null, password: null);
-              _auth.createUserWithEmailAndPassword(
-                email: emailEditingController.text.toString(), 
-                password: passwordEditingController.text.toString())
-                .then((value) {
-                  print("Successfully signed up" + value.user.uid);
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen())
-                  );
-                }).catchError((e){
-                  print("Unable to signed up" + e.toString());
-                });
-              },
-          
-            )
-          ],
         )
-      )
+      ),
     );
+  }
+  
+  List<Widget> buildInputs(){
+    return [
+      new TextFormField(
+        controller: emailEditingController,
+        obscureText: false,
+        decoration: InputDecoration(
+          labelText: 'Email',
+          labelStyle: TextStyle(
+            fontFamily: 'Montserra',
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          )
+        ),
+        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+        onSaved: (value) => email = value,
+      ),
+       new TextFormField(
+        controller: passwordEditingController,
+        obscureText: true,
+        decoration: InputDecoration(
+          labelText: 'Password',
+          labelStyle: TextStyle(
+            fontFamily: 'Montserra',
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          )
+        ),
+        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        onSaved: (value) => password = value,
+      ),
+    ];
+  }
+  List<Widget> buildSubmitButtons() {
+    if( _formType == FormType.login){
+      return [
+        new RaisedButton(
+          child: Text("Login"),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
+          onPressed: validateAndSubmit,
+        ),
+        new RaisedButton(
+
+          textColor: Colors.white,
+          color: Colors.blueAccent,
+          splashColor: Colors.blueAccent,
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
+          child: Text("Sign Up"),
+          onPressed: loginAccount,
+        ),
+      ];  
+    } 
+    else {
+      return [
+        new RaisedButton(
+          child: new Text('Create an account'),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
+          onPressed: validateAndSubmit,
+        ),
+        new RaisedButton(
+          child: new Text("Have an account? Login"),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
+          onPressed: loginAccount,
+        )
+      ];
+    } 
   }
 }
