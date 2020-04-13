@@ -1,3 +1,4 @@
+import 'package:app/screens/auth_result.dart';
 import 'package:flutter/material.dart';
 import './screens/login.dart';
 // import 'package:google_sign_in/';
@@ -7,6 +8,8 @@ import './screens/collections.dart';
 import './screens/order_screen.dart';
 import './screens/intro.dart';
 import './screens/review_order.dart';
+import './screens/root.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
       
-      home: IntroScreen(),
+      home: new RootPage(auth: new AuthResult()),
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfilePage(),
         "/collections": (BuildContext context) => new CollectionsPage(),
@@ -28,27 +31,3 @@ class MyApp extends StatelessWidget {
 }
 
  
-
-
-// class BackgroundImage extends StatelessWidget {
-//   final String _assetPath;
-  
-//   BackgroundImage(this._assetPath);
-//   @override 
-//   Widget build(BuildContext context) {
-//     return Container(
-//       constraints: BoxConstraints.expand(
-//         height: 603,
-//       ),
-//       decoration: BoxDecoration(
-//         gradient: LinearGradient(
-//           begin: Alignment.topLeft,
-//           end: Alignment.bottomLeft,
-//           colors: [Colors.orange[50], Colors.orange[100]],
-//           tileMode: TileMode.repeated,
-//         )
-//       ),
-//     );
-//   }
-// }
-

@@ -1,11 +1,15 @@
 import "package:flutter/material.dart";
 import "drink_model.dart";
 import "review_order.dart";
+import 'database.dart';
 
-
+ 
 class CreateDrink extends StatefulWidget {
   static const String routeName = "/create_drink";
+
+  final String drinkKey;
   
+  CreateDrink({Key key, this.drinkKey}) : super(key: key);
   @override
   _OrderState createState() => new _OrderState();
 
@@ -29,6 +33,7 @@ class _OrderState extends State<CreateDrink> {
     });
   }
 
+
   @override 
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -48,7 +53,7 @@ class _OrderState extends State<CreateDrink> {
                     child: new Row(
                       children: <Widget>[
                         new Icon(Icons.local_drink),
-                        new Text('${value}'),
+                        new Text('$value'),
                       ],
                     ),
                   );
@@ -94,7 +99,5 @@ class _OrderState extends State<CreateDrink> {
       )
     );
   }
-}
 
-class Review {
 }

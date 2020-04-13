@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_page.dart';
+import 'auth_result.dart';
+
 
 class LoginPage extends StatefulWidget{
+  LoginPage({this.auth, this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
+
   @override 
   State<StatefulWidget> createState() => new _LoginPage();
 }
@@ -18,7 +23,7 @@ class _LoginPage extends State<LoginPage> {
   String password;
   FormType _formType;
   
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final formKey = new GlobalKey<FormState>();
 
   bool validateAndSave() {
@@ -33,12 +38,15 @@ class _LoginPage extends State<LoginPage> {
   void validateAndSubmit() async {
     if(validateAndSave()){
       try {
-        if(_formType == FormType.login) {
-          FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
+        if(_formType == FormType.login) {   
+          FirebaseUser user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)).user;
           print("Signed in: ${user.uid}");
         }
-        FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
-        print("Registered user: ${user.uid}");
+        else {
+          FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
+          print("Registered user: ${user.uid}");
+        }
+        widget.onSignedIn();
       }
       catch(e) {
         print('Error: $e');
@@ -71,6 +79,13 @@ class _LoginPage extends State<LoginPage> {
         title: new Text("Login/Register")
       ),
       body: new Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Colors.orange[50], Colors.orange[100]]
+          ),
+        ),
         child: Form(
           key: formKey,
           child: Column(
@@ -125,15 +140,11 @@ class _LoginPage extends State<LoginPage> {
           onPressed: validateAndSubmit,
         ),
         new RaisedButton(
-
-          textColor: Colors.white,
-          color: Colors.blueAccent,
-          splashColor: Colors.blueAccent,
+          child: Text("Sign Up"),
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
           ),
-          child: Text("Sign Up"),
-          onPressed: loginAccount,
+          onPressed: registerAccount,
         ),
       ];  
     } 

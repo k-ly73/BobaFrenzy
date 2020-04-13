@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'drink_model.dart';
+import 'database.dart';
 
 class ReviewCreation extends StatelessWidget{  
   static const String routeName = '/review';
@@ -19,6 +20,8 @@ class ReviewCreation extends StatelessWidget{
     });
 
   }
+
+
   @override 
   Widget build(BuildContext context){
     return new Scaffold(
@@ -44,7 +47,8 @@ class ReviewCreation extends StatelessWidget{
                 }
               )
             ),
-            new Expanded(
+            new RaisedButton(
+              
               child: new Text('Generate'),
             )
           ],

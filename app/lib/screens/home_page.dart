@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
+import 'auth_result.dart';
+
 
 class HomeScreen extends StatelessWidget {
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+
+  HomeScreen({this.auth, this.onSignedOut});
+
+  void _signedOut() async {
+    try {
+      await auth.signOut();
+      onSignedOut();
+    }
+    catch(e) {
+      print(e);
+    }
+  }
+
+
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(  
-        title: Text("Home")
+        title: Text("Home"),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text(
+              'Logout',
+              style: new TextStyle(
+                color: Colors.white,
+                
+              ),
+            ),
+            onPressed: _signedOut
+          )
+        ],
       ),
       drawer: MenuDrawer(),
       body: Stack(
