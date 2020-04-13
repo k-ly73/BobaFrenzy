@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'login.dart';
+import 'auth_result.dart';
+import 'root.dart';
 import 'home_page.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -10,11 +10,11 @@ class IntroScreen extends StatelessWidget {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.orange[50], Colors.orange[100]]
-            ),
+            image: new DecorationImage(
+               image: AssetImage("bubble_tea.jpeg"),
+               fit: BoxFit.cover
+            )
+           
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +58,7 @@ class IntroScreen extends StatelessWidget {
                         onTap : () {
                           Navigator.push(
                             context, MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => new RootPage(auth: new AuthResult()),
                             )
                           );
                         },

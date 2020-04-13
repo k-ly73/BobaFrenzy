@@ -48,8 +48,11 @@ class ReviewCreation extends StatelessWidget{
               )
             ),
             new RaisedButton(
-              
+
               child: new Text('Generate'),
+              onPressed : (){
+                Navigator.of(context).pushNamed("/generate_drink");
+              }
             )
           ],
         )

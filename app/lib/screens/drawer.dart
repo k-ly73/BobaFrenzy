@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
+
 
 class MenuDrawer extends StatelessWidget {
   @override
@@ -26,7 +28,7 @@ class MenuDrawer extends StatelessWidget {
                     )
                   ),
                   Text(
-                    "Kevin Ly",
+                    "User",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -80,21 +82,7 @@ class MenuDrawer extends StatelessWidget {
             } 
             
           ),
-          ListTile(
-             title: Text(
-              'Log into your Account',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            onTap: () 
-            {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed("/login");
-      
-            } 
-            
-          )
+
         ]
       )
     );
