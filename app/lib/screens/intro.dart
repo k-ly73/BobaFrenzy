@@ -11,10 +11,9 @@ class IntroScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: new DecorationImage(
-               image: AssetImage("bubble_tea.jpeg"),
-               fit: BoxFit.cover
+              image: AssetImage("bubble_tea.jpg"),
+              fit: BoxFit.cover,
             )
-           
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
