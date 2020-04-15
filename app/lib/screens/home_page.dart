@@ -30,8 +30,7 @@ class HomeScreen extends StatelessWidget {
             child: new Text(
               'Logout',
               style: new TextStyle(
-                color: Colors.white,
-                
+                color: Colors.white,               
               ),
             ),
             onPressed: _signedOut

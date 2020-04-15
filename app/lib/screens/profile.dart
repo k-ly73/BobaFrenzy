@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
+
+
 
 class ProfilePage extends StatefulWidget {
+
+
+
   @override 
   _ProfilePageState createState() => new _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
   static const String routeName = '/profile';
-
+  LoginPage user = new LoginPage(); 
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange[100],
       
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('$user}'),
       ),
-      body: SafeArea(
-        
-        child: Column(
-          
+      body: SafeArea(   
+        child: Column(     
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(
-                "lib/assets/images/test_profile2.png",
+                "lib/assets/images/",
               ),
                 
             ),

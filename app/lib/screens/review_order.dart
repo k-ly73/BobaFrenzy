@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'drink_model.dart';
-import 'database.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReviewCreation extends StatelessWidget{  
   static const String routeName = '/review';
@@ -52,6 +53,8 @@ class ReviewCreation extends StatelessWidget{
               child: new Text('Generate'),
               onPressed : (){
                 Navigator.of(context).pushNamed("/generate_drink");
+                final FirebaseDatabase _database = FirebaseDatabase.instance;
+                // DocumentReference ref = Firestore
               }
             )
           ],

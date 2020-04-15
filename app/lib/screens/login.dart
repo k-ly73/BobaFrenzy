@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_result.dart';
-
+import 'package:firebase_database/firebase_database.dart';
 
 class LoginPage extends StatefulWidget{
   LoginPage({this.auth, this.onSignedIn});
@@ -16,6 +16,8 @@ enum FormType {
   login,
   register
 }
+
+final databaseReference = FirebaseDatabase.instance.reference();
 
 class _LoginPage extends State<LoginPage> {
   
@@ -34,7 +36,7 @@ class _LoginPage extends State<LoginPage> {
     }
     return false;
   }
-
+  
   void validateAndSubmit() async {
     if(validateAndSave()){
       try {
@@ -44,7 +46,7 @@ class _LoginPage extends State<LoginPage> {
         }
         else {
           FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
-          print("Registered user: ${user.uid}");
+          print("Registered user: ${user.uid}");         
         }
         widget.onSignedIn();
       }
@@ -56,11 +58,12 @@ class _LoginPage extends State<LoginPage> {
   }
 
 
-  void registerAccount(){
+  void registerAccount() async {
     formKey.currentState.reset();
     setState((){
       _formType = FormType.register;
     });
+ 
   }
 
   void loginAccount() {
@@ -69,6 +72,8 @@ class _LoginPage extends State<LoginPage> {
       _formType = FormType.login;
     });
   }
+  
+
   var emailEditingController = TextEditingController();
   var passwordEditingController = TextEditingController();
 
@@ -79,6 +84,7 @@ class _LoginPage extends State<LoginPage> {
         title: new Text("Login/Register")
       ),
       body: new Container(
+        padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -89,7 +95,7 @@ class _LoginPage extends State<LoginPage> {
         child: Form(
           key: formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: buildInputs() + buildSubmitButtons()
           ),
         )
@@ -99,10 +105,26 @@ class _LoginPage extends State<LoginPage> {
   
   List<Widget> buildInputs(){
     return [
+      new Container(
+        child: new Text( 
+          "Account",
+          style: new TextStyle(
+            fontSize: 20,
+          )
+        )
+      
+      ),
       new TextFormField(
         controller: emailEditingController,
         obscureText: false,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          border: new OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(10),
+            )
+          ),
           labelText: 'Email',
           labelStyle: TextStyle(
             fontFamily: 'Montserra',
@@ -113,10 +135,17 @@ class _LoginPage extends State<LoginPage> {
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
         onSaved: (value) => email = value,
       ),
-       new TextFormField(
+      new TextFormField(
         controller: passwordEditingController,
         obscureText: true,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          border: new OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(10),
+            )
+          ),
           labelText: 'Password',
           labelStyle: TextStyle(
             fontFamily: 'Montserra',
@@ -133,7 +162,11 @@ class _LoginPage extends State<LoginPage> {
     if( _formType == FormType.login){
       return [
         new RaisedButton(
-          child: Text("Login"),
+          child: Text(
+            "Login",
+            style: TextStyle(color: Colors.white)
+          ),
+          color: Colors.blue,
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
           ),
@@ -144,14 +177,20 @@ class _LoginPage extends State<LoginPage> {
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
           ),
-          onPressed: registerAccount,
+          onPressed:
+            registerAccount,
+          
         ),
       ];  
     } 
     else {
       return [
         new RaisedButton(
-          child: new Text('Create an account'),
+          child: new Text(
+            'Create an account',
+            style: TextStyle(color: Colors.white)
+          ),
+          color: Colors.blue,
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(18.0),
           ),
@@ -168,3 +207,5 @@ class _LoginPage extends State<LoginPage> {
     } 
   }
 }
+
+
