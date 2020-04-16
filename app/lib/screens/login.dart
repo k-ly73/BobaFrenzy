@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_result.dart';
+import 'database.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class LoginPage extends StatefulWidget{
@@ -12,19 +14,21 @@ class LoginPage extends StatefulWidget{
   State<StatefulWidget> createState() => new _LoginPage();
 }
 
+
 enum FormType {
   login,
   register
 }
 
-final databaseReference = FirebaseDatabase.instance.reference();
 
 class _LoginPage extends State<LoginPage> {
   
   String email;
   String password;
+  List<User> users = List();
   FormType _formType;
-  
+  User userName;
+  DatabaseReference userRef;
   final FirebaseAuth auth = FirebaseAuth.instance;
   final formKey = new GlobalKey<FormState>();
 
@@ -32,9 +36,18 @@ class _LoginPage extends State<LoginPage> {
     final form = formKey.currentState;
     if (form.validate()){
       form.save();
+      userRef.push().set(userName.toJson());
       return true;
     }
     return false;
+  }
+
+  @override 
+  void initState() {
+    super.initState();
+    userName = User("");
+    userRef = FirebaseDatabase.instance.reference().child("user_name");
+
   }
   
   void validateAndSubmit() async {
@@ -73,90 +86,168 @@ class _LoginPage extends State<LoginPage> {
     });
   }
   
-
+  var nameEditingController = TextEditingController();
   var emailEditingController = TextEditingController();
   var passwordEditingController = TextEditingController();
 
   @override 
   Widget build(BuildContext context){
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: new Text("Login/Register")
       ),
-      body: new Container(
-        padding: EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.orange[50], Colors.orange[100]]
+      body: new Stack(
+        children: <Widget>[
+          new Container(
+          padding: EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.orange[50], Colors.orange[100]]
+            ),
           ),
-        ),
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: buildInputs() + buildSubmitButtons()
-          ),
-        )
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: buildInputs() + buildSubmitButtons()
+            ),
+          )
+
+          )
+        ],
+        
       ),
     );
   }
   
   List<Widget> buildInputs(){
-    return [
-      new Container(
-        child: new Text( 
-          "Account",
-          style: new TextStyle(
-            fontSize: 20,
-          )
-        )
-      
-      ),
-      new TextFormField(
-        controller: emailEditingController,
-        obscureText: false,
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          border: new OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              const Radius.circular(10),
+       if(_formType == FormType.login){
+      return [
+         new TextFormField(
+          controller: emailEditingController,
+          obscureText: false,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: new OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(10),
+              )
+            ),
+            labelText: 'Email',
+            labelStyle: TextStyle(
+              fontFamily: 'Montserra',
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
             )
           ),
-          labelText: 'Email',
-          labelStyle: TextStyle(
-            fontFamily: 'Montserra',
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          )
-        ),
-        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-        onSaved: (value) => email = value,
-      ),
-      new TextFormField(
-        controller: passwordEditingController,
-        obscureText: true,
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          border: new OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              const Radius.circular(10),
+          validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+          onSaved: (value) => email = value,
+          ),
+        new TextFormField(
+          controller: passwordEditingController,
+          obscureText: true,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: new OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(10),
+              )
+            ),
+            labelText: 'Password',
+            labelStyle: TextStyle(
+              fontFamily: 'Montserra',
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
             )
           ),
-          labelText: 'Password',
-          labelStyle: TextStyle(
-            fontFamily: 'Montserra',
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
+          validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+          onSaved: (value) => password = value,
+        ),
+      ];
+    }
+    else {
+      return [
+        new Container(
+          margin: EdgeInsets.all(10),
+          child: new Text( 
+            "New Account",
+            style: new TextStyle(
+              fontSize: 20,
+            )
           )
         ),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
-        onSaved: (value) => password = value,
-      ),
-    ];
+        new TextFormField(
+          controller: nameEditingController,
+          obscureText: false,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: new OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(10),
+              )
+            ),
+            labelText: 'Name',
+            labelStyle: TextStyle(
+              fontFamily: 'Montserra',
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            )
+          ),
+          validator: (value) => value.isEmpty ? 'Username can\'t be empty' : null,
+          onSaved: (userName) => userName = userName,
+        ),
+        new TextFormField(
+          controller: emailEditingController,
+          obscureText: false,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: new OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(10),
+              )
+            ),
+            labelText: 'Email',
+            labelStyle: TextStyle(
+              fontFamily: 'Montserra',
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            )
+          ),
+          validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+          onSaved: (value) => email = value,
+        ),
+        new TextFormField(
+          controller: passwordEditingController,
+          obscureText: true,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            border: new OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(10),
+              )
+            ),
+            labelText: 'Password',
+            labelStyle: TextStyle(
+              fontFamily: 'Montserra',
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            )
+          ),
+          validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+          onSaved: (value) => password = value,
+        ),
+      ];  
+    }
+ 
+   
   }
   List<Widget> buildSubmitButtons() {
     if( _formType == FormType.login){

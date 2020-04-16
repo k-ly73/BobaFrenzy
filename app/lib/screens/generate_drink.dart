@@ -54,12 +54,19 @@ class _GenerateDrink extends State<GenerateDrink> {
 
   @override 
   Widget build(BuildContext context){
-    position.add(Position(40, 400));
-    position.add(Position(34, 350));
-    position.add(Position(60, 400));
+    position.add(Position(90, 500));
+    position.add(Position(90, 450));
+    position.add(Position(40, 480));
 
     return Scaffold(
       body: new Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.orange[50], Colors.orange[100]]
+          )
+        ),
         child: new Center(
           child: CustomMultiChildLayout(
             delegate: DragArea(position),

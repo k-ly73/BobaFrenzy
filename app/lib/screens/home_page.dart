@@ -54,12 +54,16 @@ class HomeScreen extends StatelessWidget {
             Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(
+              Container(
+                child: Text(
+                
                 'Welcome to Boba Frenzy!',
-                style: TextStyle(
-                  fontSize: 30, 
+                  style: TextStyle(
+                    fontSize: 30, 
+                  ),
                 ),
               ),
+             
               CircleAvatar(
                 radius: 50.0,
                 backgroundColor: Colors.green,

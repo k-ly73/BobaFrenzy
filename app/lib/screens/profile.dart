@@ -1,63 +1,78 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'auth_result.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 
 
-class ProfilePage extends StatefulWidget {
-
-
-
+class ProfileScreen extends StatefulWidget {
   @override 
-  _ProfilePageState createState() => new _ProfilePageState();
+  _ProfileScreen createState() => new _ProfileScreen();
 }
+class User {
+  final String id;
+  final String userName;
 
-class _ProfilePageState extends State<ProfilePage> {
+  User({this.id, this.userName});
+
+  User.fromData(Map<String, dynamic> data) 
+  : id = data['id'], userName = data["username"];
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'username': userName,
+
+    };
+  }
+  
+}
+class _ProfileScreen extends State<ProfileScreen> {
   static const String routeName = '/profile';
-  LoginPage user = new LoginPage(); 
+  
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[100],
-      
       appBar: AppBar(
-        title: Text('$user}'),
+        title: Text(''),
       ),
-      body: SafeArea(   
-        child: Column(     
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage(
-                "lib/assets/images/",
+      body: new Stack(
+        children: <Widget>[
+          ClipPath(
+            child: Container(
+              decoration: BoxDecoration(
+              color: Color(0xff622F74),
+                gradient: LinearGradient(
+                  colors: [new Color(0xFF795548), new Color(0xFFA1887F)],
+                  begin: Alignment.centerRight,
+                  end: Alignment(-1.0,-1.0),
+                 
+                ),
               ),
+            ),  
+            clipper: GetClipper()
+          ),
+          Positioned(
+            width: 350.0,
+            top: MediaQuery.of(context).size.height / 5,
+            left: MediaQuery.of(context).size.width / 14,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 150.0,
+                  height: 150.0,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage("lib/assets/test_profile.png"),
+                  )
+                ),
                 
-            ),
-            Text(
-              "Profile Name",
-              style: TextStyle(
-                fontSize: 40,
-              )
-            ),
-            Text(
-              "User Name",
-              style: TextStyle(
-                fontSize: 40,
-              )
-            ),
-            Text(
-              "Something",
-              style: TextStyle(
-                fontSize: 40,
-              )
-            ),
-            SizedBox(
-              child: Divider(
-                color: Colors.orange[100],
-              )
+              ],
             )
-          ]
-        )
+          )
+        ]
+            
+      
       )
     );
   }

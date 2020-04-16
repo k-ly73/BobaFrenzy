@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'database.dart';
 import 'dart:async';
@@ -11,14 +12,13 @@ abstract class BaseAuth {
 
 class AuthResult implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
   Future<String> signInWithEmailAndPassword(String email, String password) async {
     FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
     return user.uid;
   }
   
   Future<String> createUserWithEmailAndPassword(String email, String password) async {
-    FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;    
+    FirebaseUser user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;     
     return user.uid;
   }
 
