@@ -2,40 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_result.dart';
 import 'package:firebase_database/firebase_database.dart';
-
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override 
   _ProfileScreen createState() => new _ProfileScreen();
 }
-class User {
-  final String id;
-  final String userName;
 
-  User({this.id, this.userName});
-
-  User.fromData(Map<String, dynamic> data) 
-  : id = data['id'], userName = data["username"];
-
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'username': userName,
-
-    };
-  }
-  
-}
 class _ProfileScreen extends State<ProfileScreen> {
-  static const String routeName = '/profile';
   
+  static const String routeName = '/profile';
+  String userName;
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: Text(''),
+        title: Text('Profile'),
       ),
       body: new Stack(
         children: <Widget>[
@@ -66,13 +49,32 @@ class _ProfileScreen extends State<ProfileScreen> {
                     backgroundImage: AssetImage("lib/assets/test_profile.png"),
                   )
                 ),
-                
+                Container(
+                  padding: EdgeInsets.only(left: 25, right: 25),
+                  child: Center(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: new TextField(
+                            decoration: new InputDecoration.collapsed(
+                              hintText: 'Edit Name',
+                            ),
+                            onChanged: (String str) {
+                              setState((){
+                              userName = str;
+                              });
+                            }
+                          )
+                        )
+                      ],
+                    )
+                  ) 
+                )
               ],
-            )
-          )
-        ]
-            
-      
+            )            
+          ),
+        ],
+
       )
     );
   }

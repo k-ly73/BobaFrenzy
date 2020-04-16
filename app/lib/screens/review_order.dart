@@ -44,17 +44,18 @@ class ReviewCreation extends StatelessWidget{
                 shrinkWrap: true,
                 itemCount: _list.length,
                 itemBuilder: (BuildContext context, int index){
-                  return new Text(_list.elementAt(index));
+                  return new Container(
+                    child: Text(_list.elementAt(index))                    
+                  );
                 }
               )
             ),
             new RaisedButton(
 
-              child: new Text('Generate'),
+              child: new Text('Make your drink'),
               onPressed : (){
                 Navigator.of(context).pushNamed("/generate_drink");
-                final FirebaseDatabase _database = FirebaseDatabase.instance;
-                // DocumentReference ref = Firestore
+              
               }
             )
           ],

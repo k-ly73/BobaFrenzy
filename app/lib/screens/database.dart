@@ -12,19 +12,6 @@ import 'login.dart';
  
 // }
 
-class User {
-  String name;
-  User (this.name);
-
-  User.fromSnapshot(DataSnapshot snapshot)
-  : name = snapshot.value['user_name'];
-
-  toJson() {
-    return {
-      'user_name': name,
-    };
-  }
-}
 
 
 

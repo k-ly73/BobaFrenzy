@@ -25,9 +25,9 @@ class _LoginPage extends State<LoginPage> {
   
   String email;
   String password;
-  List<User> users = List();
+
   FormType _formType;
-  User userName;
+
   DatabaseReference userRef;
   final FirebaseAuth auth = FirebaseAuth.instance;
   final formKey = new GlobalKey<FormState>();
@@ -36,7 +36,6 @@ class _LoginPage extends State<LoginPage> {
     final form = formKey.currentState;
     if (form.validate()){
       form.save();
-      userRef.push().set(userName.toJson());
       return true;
     }
     return false;
@@ -45,8 +44,7 @@ class _LoginPage extends State<LoginPage> {
   @override 
   void initState() {
     super.initState();
-    userName = User("");
-    userRef = FirebaseDatabase.instance.reference().child("user_name");
+   
 
   }
   
@@ -124,7 +122,7 @@ class _LoginPage extends State<LoginPage> {
   }
   
   List<Widget> buildInputs(){
-       if(_formType == FormType.login){
+    if(_formType == FormType.login){
       return [
          new TextFormField(
           controller: emailEditingController,
@@ -181,27 +179,27 @@ class _LoginPage extends State<LoginPage> {
             )
           )
         ),
-        new TextFormField(
-          controller: nameEditingController,
-          obscureText: false,
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            border: new OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                const Radius.circular(10),
-              )
-            ),
-            labelText: 'Name',
-            labelStyle: TextStyle(
-              fontFamily: 'Montserra',
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            )
-          ),
-          validator: (value) => value.isEmpty ? 'Username can\'t be empty' : null,
-          onSaved: (userName) => userName = userName,
-        ),
+        // new TextFormField(
+        //   controller: nameEditingController,
+        //   obscureText: false,
+        //   decoration: InputDecoration(
+        //     fillColor: Colors.white,
+        //     filled: true,
+        //     border: new OutlineInputBorder(
+        //       borderRadius: BorderRadius.all(
+        //         const Radius.circular(10),
+        //       )
+        //     ),
+        //     labelText: 'Name',
+        //     labelStyle: TextStyle(
+        //       fontFamily: 'Montserra',
+        //       fontWeight: FontWeight.bold,
+        //       color: Colors.grey,
+        //     )
+        //   ),
+        //   validator: (value) => value.isEmpty ? 'Username can\'t be empty' : null,
+        //   onSaved: (userName) => userName = userName,
+        // ),
         new TextFormField(
           controller: emailEditingController,
           obscureText: false,
