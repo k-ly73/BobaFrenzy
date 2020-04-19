@@ -87,12 +87,12 @@ class _GenerateDrink extends State<GenerateDrink> {
   }
   
   List<Widget> layoutsBubbleTea() {
-    position.add(Position(90, 500));
-    position.add(Position(90, 450));
-    position.add(Position(70, 480));
-    position.add(Position(70, 430));
-    position.add(Position(90, 430));
-    position.add(Position(90, 480));
+    position.add(Position(180, 600));
+    position.add(Position(190, 550));
+    position.add(Position(170, 580));
+    position.add(Position(170, 530));
+    position.add(Position(190, 530));
+    position.add(Position(190, 580));
     return [
       LayoutId(
         id: 't0',
@@ -207,7 +207,26 @@ class _GenerateDrink extends State<GenerateDrink> {
             });
           }
         )
-      )
+      ),
+      // LayoutId(
+      //   id: 't6',
+      //   child: Draggable(               
+      //     child: CircleAvatar(
+      //       backgroundImage: AssetImage("lib/assets/egg_pudding.png"),
+      //       radius: 10.0,
+      //     ),
+      //     feedback: CircleAvatar(
+      //       backgroundImage: AssetImage("lib/assets/egg_pudding.png"),
+      //       radius: 10.0,
+      //     ),
+      //     childWhenDragging: Container(),
+      //     onDragEnd: (DraggableDetails d) {
+      //       setState((){
+      //         position[6].setPosition(d.offset.dx, d.offset.dy);
+      //       });
+      //     }
+      //   )
+      // ),
     ];
   }
 }

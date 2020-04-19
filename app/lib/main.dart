@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green[900]),
       
-      home: GenerateDrink(),
+      home: IntroScreen(),
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfileScreen(),
         "/collections": (BuildContext context) => new CollectionsPage(),

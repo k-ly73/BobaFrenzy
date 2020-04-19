@@ -14,34 +14,34 @@ class MenuDrawer extends StatelessWidget {
               top: 30,
             ),
             color: Theme.of(context).primaryColor,
-            child: Center(
+            child: Container(
               child: Column(
                 children: <Widget>[
                   Container(
                     height: 100,
                     width: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: NetworkImage('')
-                      ) 
-                    )
+                    child: Text(
+                      "Boba Frenzy",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontFamily: "Cursive"
+
+                      )
+                      
+                
+                    ),
                   ),
-                  Text(
-                    "User",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    )
-                    
-              
-                  ),
+             
                   
                 ],
               )
             ),
           ),
           ListTile(
+            leading: Icon(
+              Icons.person
+            ),
             title: Text(
               'Profile',
               style: TextStyle(
@@ -54,18 +54,6 @@ class MenuDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed("/profile");
               
             } 
-          ),
-          ListTile(
-            title: Text(
-              'Collections',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed("/collections");
-            }
           ),
           ListTile(
             title: Text(

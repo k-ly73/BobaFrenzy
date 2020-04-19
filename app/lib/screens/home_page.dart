@@ -55,9 +55,9 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
+                margin: EdgeInsets.only(top: 30, bottom: 30),
                 child: Text(
-                
-                'Welcome to Boba Frenzy!',
+                'Welcome',
                   style: TextStyle(
                     fontSize: 30, 
                   ),
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Colors.green,
                 child: Icon(
                   Icons.local_drink,
-                )    , 
+                ), 
               ),
             ],
           )

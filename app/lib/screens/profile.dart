@@ -46,7 +46,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                   width: 150.0,
                   height: 150.0,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("lib/assets/test_profile.png"),
+                    backgroundImage: AssetImage("lib/assets/bubble_tea.jpg"),
                   )
                 ),
                 Container(
