@@ -37,7 +37,6 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      drawer: MenuDrawer(),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -46,7 +45,8 @@ class HomeScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.orange[50], Colors.orange[100]]
+                  colors: [Colors.orange[50], Colors.orange[200]],
+
                 ),
               )
             ),
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
             Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
+              new Container(
                 margin: EdgeInsets.only(top: 30, bottom: 30),
                 child: Text(
                 'Welcome',
@@ -64,12 +64,35 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
              
-              CircleAvatar(
-                radius: 50.0,
+              new CircleAvatar(
+                radius: 30.0,
                 backgroundColor: Colors.green,
                 child: Icon(
                   Icons.local_drink,
                 ), 
+              ),
+              new Container(
+                padding: EdgeInsets.all(35),
+                child: new Text(
+                  'Putting creativity to the test for tea lovers',
+                  style: TextStyle(
+                    fontFamily: 'Cursive',
+                    fontSize: 20
+                  )
+                ),
+              ),
+              new RaisedButton(
+                
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                color: Colors.brown[100],
+                child: new Text(
+                  'Create a drink'
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/create_drink");
+                }
               ),
             ],
           )

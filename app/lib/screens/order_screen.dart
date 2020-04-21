@@ -93,7 +93,8 @@ class _OrderState extends State<CreateDrink> {
                 child: new Text(
                   'Select your toppings',
                   style: new TextStyle( 
-                    fontWeight: FontWeight.bold,
+                   
+                    fontSize: 20,
                   )
                 ),
               ),

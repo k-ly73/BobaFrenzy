@@ -40,12 +40,32 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.local_drink
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.brown
+              ),
+            ),
+            onTap: () 
+            {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed("/home_page");
+      
+            } 
+            
+          ),
+          ListTile(
+            leading: Icon(
               Icons.person
             ),
             title: Text(
               'Profile',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.brown
               ),
               
             ),
@@ -56,10 +76,14 @@ class MenuDrawer extends StatelessWidget {
             } 
           ),
           ListTile(
+            leading: Icon(
+              Icons.local_drink
+            ),
             title: Text(
               'Create a Drink',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.brown
               ),
             ),
             onTap: () 

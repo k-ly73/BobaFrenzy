@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.green[900]),
+      theme: ThemeData(primaryColor: Colors.brown),
       
-      home: IntroScreen(),
+      home: HomeScreen(),
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfileScreen(),
         "/collections": (BuildContext context) => new CollectionsPage(),

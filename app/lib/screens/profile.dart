@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_result.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import "drawer.dart";
 class ProfileScreen extends StatefulWidget {
   @override 
   _ProfileScreen createState() => new _ProfileScreen();
@@ -16,6 +16,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MenuDrawer(),
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Profile'),
@@ -59,9 +60,10 @@ class _ProfileScreen extends State<ProfileScreen> {
                             decoration: new InputDecoration.collapsed(
                               hintText: 'Edit Name',
                             ),
+                            textAlign: TextAlign.center,
                             onChanged: (String str) {
                               setState((){
-                              userName = str;
+                                userName = str;
                               });
                             }
                           )

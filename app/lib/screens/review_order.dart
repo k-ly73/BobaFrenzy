@@ -12,7 +12,7 @@ class ReviewCreation extends StatelessWidget{
   ReviewCreation({order: null}){
     _drinkOrder = order;
 
-    _list.add("Drink:  ${_drinkOrder.drink}");
+    _list.add("Tea:  ${_drinkOrder.drink}");
     _list.add(" ");
     _list.add("Toppings: ");
 
@@ -46,7 +46,6 @@ class ReviewCreation extends StatelessWidget{
               child: new Container(
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.brown,
                   borderRadius: BorderRadius.circular(30)
                 ),
                 child: new Text(
@@ -54,7 +53,7 @@ class ReviewCreation extends StatelessWidget{
                   
                   style: new TextStyle(
                     fontSize: 30,
-                    color: Colors.white,
+                    fontFamily: "Cursive"
                   )
                 )
               ),
@@ -77,7 +76,7 @@ class ReviewCreation extends StatelessWidget{
             ),
             new RaisedButton(
 
-              child: new Text('Make your drink'),
+              child: new Text('Build a drink'),
               onPressed : (){
                 Navigator.of(context).pushNamed("/generate_drink");
               

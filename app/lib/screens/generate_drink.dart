@@ -93,6 +93,8 @@ class _GenerateDrink extends State<GenerateDrink> {
     position.add(Position(170, 530));
     position.add(Position(190, 530));
     position.add(Position(190, 580));
+
+    
     return [
       LayoutId(
         id: 't0',
