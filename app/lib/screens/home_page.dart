@@ -9,6 +9,8 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({this.auth, this.onSignedOut});
 
+  static const String routeName = '/home_screen';
+
   void _signedOut() async {
     try {
       await auth.signOut();
@@ -72,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                 ), 
               ),
               new Container(
-                padding: EdgeInsets.all(35),
+                padding: EdgeInsets.only(top: 100, bottom: 50),
                 child: new Text(
                   'Putting creativity to the test for tea lovers',
                   style: TextStyle(
@@ -82,7 +84,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               new RaisedButton(
-                
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

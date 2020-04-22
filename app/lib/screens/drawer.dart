@@ -40,7 +40,7 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.local_drink
+              Icons.home
             ),
             title: Text(
               'Home',
@@ -52,7 +52,7 @@ class MenuDrawer extends StatelessWidget {
             onTap: () 
             {
               Navigator.of(context).pop();
-              Navigator.of(context).pushNamed("/home_page");
+              Navigator.of(context).pushNamed("/home_screen");
       
             } 
             

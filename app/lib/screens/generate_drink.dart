@@ -37,7 +37,7 @@ class DragArea extends MultiChildLayoutDelegate {
 
   @override
   void performLayout(Size size) {
-    for(int i = 0; i < 6; i++) {
+    for(int i = 0; i < 7; i++) {
       layoutChild('t' + i.toString(), BoxConstraints.loose(size));
       positionChild('t' + i.toString(), Offset(p[i].x, p[i].y));
     }
@@ -93,8 +93,8 @@ class _GenerateDrink extends State<GenerateDrink> {
     position.add(Position(170, 530));
     position.add(Position(190, 530));
     position.add(Position(190, 580));
+    position.add(Position(190, 600));
 
-    
     return [
       LayoutId(
         id: 't0',
@@ -210,25 +210,31 @@ class _GenerateDrink extends State<GenerateDrink> {
           }
         )
       ),
-      // LayoutId(
-      //   id: 't6',
-      //   child: Draggable(               
-      //     child: CircleAvatar(
-      //       backgroundImage: AssetImage("lib/assets/egg_pudding.png"),
-      //       radius: 10.0,
-      //     ),
-      //     feedback: CircleAvatar(
-      //       backgroundImage: AssetImage("lib/assets/egg_pudding.png"),
-      //       radius: 10.0,
-      //     ),
-      //     childWhenDragging: Container(),
-      //     onDragEnd: (DraggableDetails d) {
-      //       setState((){
-      //         position[6].setPosition(d.offset.dx, d.offset.dy);
-      //       });
-      //     }
-      //   )
-      // ),
+      LayoutId(
+        id: 't6',
+        child: Draggable(               
+          child: new Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("lib/assets/egg_pudding.PNG")
+              )
+            )
+          ),
+          feedback: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("lib/assets/egg_pudding.PNG")
+              )
+            )
+          ),
+          childWhenDragging: Container(),
+          onDragEnd: (DraggableDetails d) {
+            setState((){
+              position[6].setPosition(d.offset.dx, d.offset.dy);
+            });
+          }
+        )
+      ),
     ];
   }
 }

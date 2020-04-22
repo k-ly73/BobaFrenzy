@@ -18,14 +18,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.brown),
       
-      home: HomeScreen(),
+      home: IntroScreen(),
       routes: <String, WidgetBuilder> {
         "/profile": (BuildContext context) => new ProfileScreen(),
         "/collections": (BuildContext context) => new CollectionsPage(),
         "/create_drink": (BuildContext context) => new CreateDrink(),
         "/login": (BuildContext context) => new LoginPage(),
         "/review": (BuildContext context) => new ReviewCreation(),
-        "/generate_drink":(BuildContext context) => new GenerateDrink()
+        "/generate_drink":(BuildContext context) => new GenerateDrink(),
+        "/home_screen": (BuildContext context) => new HomeScreen(),
       }
     );
   }

@@ -94,7 +94,7 @@ class _IntroScreen extends State<IntroScreen> {
                                 borderRadius: new BorderRadius.circular(10),
                               ),
                               child: new Text(
-                                "Start",
+                                "Start Here",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
