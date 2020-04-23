@@ -44,12 +44,11 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Colors.orange[50], Colors.orange[200]],
-
-                ),
+                image: DecorationImage(
+                  image: AssetImage("lib/assets/milk_tea_background2.jpg"),
+                  fit: BoxFit.cover,
+                  colorFilter: new ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                )
               )
             ),
             

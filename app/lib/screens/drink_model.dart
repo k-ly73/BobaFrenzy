@@ -11,6 +11,7 @@ class DrinkOrder {
   DrinkOrder({String drinkKey}){
     toppings.putIfAbsent("Milk", () => false);
     toppings.putIfAbsent("Boba", () => false);
+    toppings.putIfAbsent("Egg Pudding", () => false);
   }
 
 

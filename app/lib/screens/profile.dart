@@ -12,7 +12,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreen extends State<ProfileScreen> {
   
   static const String routeName = '/profile';
+
   String userName;
+  String image; 
+  List<String> images;
+
+  
+
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +53,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                   width: 150.0,
                   height: 150.0,
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("lib/assets/bubble_tea.jpg"),
+                    backgroundImage: AssetImage(image),
                   )
                 ),
                 Container(

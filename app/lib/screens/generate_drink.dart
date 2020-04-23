@@ -87,13 +87,13 @@ class _GenerateDrink extends State<GenerateDrink> {
   }
   
   List<Widget> layoutsBubbleTea() {
-    position.add(Position(180, 600));
-    position.add(Position(190, 550));
-    position.add(Position(170, 580));
-    position.add(Position(170, 530));
-    position.add(Position(190, 530));
-    position.add(Position(190, 580));
-    position.add(Position(190, 600));
+    position.add(Position(80, 600)); //next 6 are pearls
+    position.add(Position(90, 550));
+    position.add(Position(70, 580));
+    position.add(Position(70, 530));
+    position.add(Position(90, 530));
+    position.add(Position(90, 580)); 
+    position.add(Position(190, 520)); // egg pudding
 
     return [
       LayoutId(
@@ -214,16 +214,20 @@ class _GenerateDrink extends State<GenerateDrink> {
         id: 't6',
         child: Draggable(               
           child: new Container(
+            height: 100,
+            width: 100,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/egg_pudding.PNG")
+                image: AssetImage("lib/assets/egg_pudding.PNG"),
               )
             )
           ),
           feedback: Container(
+            height: 100,
+            width: 100,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/egg_pudding.PNG")
+                image: AssetImage("lib/assets/egg_pudding.PNG"),
               )
             )
           ),
